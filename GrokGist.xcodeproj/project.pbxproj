@@ -17,6 +17,7 @@
 		7C26BCBA2034C3ED00B087B9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C26BCB92034C3ED00B087B9 /* Alamofire.framework */; };
 		7C26BCBC2034C48B00B087B9 /* GithubAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C26BCBB2034C48B00B087B9 /* GithubAPIManager.swift */; };
 		7C26BCBE2034C4F600B087B9 /* GistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C26BCBD2034C4F600B087B9 /* GistRouter.swift */; };
+		7C26BCC02034C86D00B087B9 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C26BCBF2034C86D00B087B9 /* Gist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		7C26BCB92034C3ED00B087B9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		7C26BCBB2034C48B00B087B9 /* GithubAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPIManager.swift; sourceTree = "<group>"; };
 		7C26BCBD2034C4F600B087B9 /* GistRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistRouter.swift; sourceTree = "<group>"; };
+		7C26BCBF2034C86D00B087B9 /* Gist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				7C26BC992034C24400B087B9 /* DetailViewController.swift */,
 				7C26BCBB2034C48B00B087B9 /* GithubAPIManager.swift */,
 				7C26BCBD2034C4F600B087B9 /* GistRouter.swift */,
+				7C26BCBF2034C86D00B087B9 /* Gist.swift */,
 				7C26BC9B2034C24400B087B9 /* Main.storyboard */,
 				7C26BC9E2034C24400B087B9 /* Assets.xcassets */,
 				7C26BCA02034C24400B087B9 /* LaunchScreen.storyboard */,
@@ -240,6 +243,7 @@
 			files = (
 				7C26BC9A2034C24400B087B9 /* DetailViewController.swift in Sources */,
 				7C26BCBC2034C48B00B087B9 /* GithubAPIManager.swift in Sources */,
+				7C26BCC02034C86D00B087B9 /* Gist.swift in Sources */,
 				7C26BC982034C24400B087B9 /* MasterViewController.swift in Sources */,
 				7C26BCBE2034C4F600B087B9 /* GistRouter.swift in Sources */,
 				7C26BC962034C24400B087B9 /* AppDelegate.swift in Sources */,
