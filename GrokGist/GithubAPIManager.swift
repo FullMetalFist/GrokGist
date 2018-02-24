@@ -29,6 +29,14 @@ class GithubAPIManager {
         }
     }
     
+    func fetchPublicGists(completionHandler: @escaping (Result<[Gist]>) -> Void) {
+        Alamofire.request(GistRouter.getPublic()).responseJSON { response in
+            let result = self.gistArrayFromResponse(response: response)
+            
+            completionHandler(result)
+        }
+    }
+    
     private func gistArrayFromResponse(response: DataResponse<Any>) -> Result<[Gist]> {
         guard response.result.error == nil else {
             print(response.result.error!)
