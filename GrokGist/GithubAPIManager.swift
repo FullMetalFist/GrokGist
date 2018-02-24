@@ -40,12 +40,7 @@ class GithubAPIManager {
             return .failure(GitHubAPIManagerError.objectSerialization(reason: "Did not get JSON dictionary in response"))
         }
         
-        var gists = [Gist]()
-        for item in jsonArray {
-            if let gist = Gist(json: item) {
-                gists.append(gist)
-            }
-        }
+        let gists = jsonArray.flatMap { Gist(json: $0) }
         return .success(gists)
     }
 }
