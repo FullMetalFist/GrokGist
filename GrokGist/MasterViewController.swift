@@ -89,12 +89,24 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
+        
         let gist = gists[indexPath.row]
         cell.textLabel?.text = gist.description
         cell.detailTextLabel?.text = gist.ownerLogin
         
-        // TODO: set cell.imageView to display image at gist.ownerAvatarURL
+        cell.imageView?.image = nil
+        if let urlString = gist.ownerAvatarURL {
+            GithubAPIManager.sharedInstance.imageFrom(urlString: urlString) { image, error in
+                guard error == nil else {
+                    print(error!)
+                    return
+                }
+                if let cellToUpdate = self.tableView?.cellForRow(at: indexPath) {
+                    cellToUpdate.imageView?.image = image
+                    cellToUpdate.setNeedsLayout()
+                }
+            }
+        }
         
         return cell
     }
@@ -112,7 +124,7 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-
-
+    
+    
 }
 
