@@ -6,7 +6,7 @@
 //  Copyright © 2018 Michael Vilabrera. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 
 enum GitHubAPIManagerError: Error {
@@ -34,6 +34,18 @@ class GithubAPIManager {
             let result = self.gistArrayFromResponse(response: response)
             
             completionHandler(result)
+        }
+    }
+    
+    func imageFrom(urlString: String, completionHandler: @escaping (UIImage?, Error?) -> Void) {
+        let _ = Alamofire.request(urlString).response { dataResponse in
+            guard let data = dataResponse.data else {
+                completionHandler(nil, dataResponse.error)
+                return
+            }
+            
+            let image = UIImage(data: data)
+            completionHandler(image, nil)
         }
     }
     
