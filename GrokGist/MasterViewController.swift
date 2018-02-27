@@ -13,6 +13,7 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
     var gists = [Gist]()
+    var imageCache = [String: UIImage?]()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -95,15 +96,23 @@ class MasterViewController: UITableViewController {
         cell.detailTextLabel?.text = gist.ownerLogin
         
         cell.imageView?.image = nil
+        
         if let urlString = gist.ownerAvatarURL {
-            GithubAPIManager.sharedInstance.imageFrom(urlString: urlString) { image, error in
-                guard error == nil else {
-                    print(error!)
-                    return
-                }
-                if let cellToUpdate = self.tableView?.cellForRow(at: indexPath) {
-                    cellToUpdate.imageView?.image = image
-                    cellToUpdate.setNeedsLayout()
+            if let cachedImage = imageCache[urlString] {
+                cell.imageView?.image = cachedImage
+            } else {
+                GithubAPIManager.sharedInstance.imageFrom(urlString: urlString) { image, error in
+                    guard error == nil else {
+                        print(error!)
+                        return
+                    }
+                    
+                    self.imageCache[urlString] = image
+                    
+                    if let cellToUpdate = self.tableView?.cellForRow(at: indexPath) {
+                        cellToUpdate.imageView?.image = image
+                        cellToUpdate.setNeedsLayout()
+                    }
                 }
             }
         }
