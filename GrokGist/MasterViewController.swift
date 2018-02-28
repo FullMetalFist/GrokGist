@@ -15,15 +15,32 @@ class MasterViewController: UITableViewController {
     var objects = [Any]()
     var gists = [Gist]()
     var imageCache = [String: UIImage?]()
+    var nextPageURLString: String?
+    var isLoading = false
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadGists()
+        loadGists(urlToLoad: nil)
     }
     
     
-    func loadGists() {
-        GithubAPIManager.sharedInstance.fetchPublicGists { result in
+    func loadGists(urlToLoad: String?) {
+        self.isLoading = true
+        GitHubAPIManager.sharedInstance.fetchPublicGists(pageToLoad: urlToLoad) { (result, nextPage) in
+            self.isLoading = false
+            self.nextPageURLString = nextPage
+            guard result.error == nil else {
+                self.handleLoadGistsError(result.error!)
+                return
+            }
+            
+            if let fetchedGists = result.value {
+                self.gists = fetchedGists
+            }
+            
+            self.tableView.reloadData()
+        }
+        GitHubAPIManager.sharedInstance.fetchPublicGists(pageToLoad: urlToLoad) { (result, nextPage) in
             guard result.error == nil else {
                 self.handleLoadGistsError(result.error!)
                 return
@@ -107,6 +124,18 @@ class MasterViewController: UITableViewController {
             cell.imageView?.image = UIImage(named: "placeholder")
         }
         
+        if !isLoading {
+            let rowsLoaded = gists.count
+            let rowsRemaining = rowsLoaded - indexPath.row
+            let rowsToLoadFromBottom = 5
+            
+            if rowsRemaining <= rowsToLoadFromBottom {
+                if let nextPage = nextPageURLString {
+                    self.loadGists(urlToLoad: nextPage)
+                }
+            }
+        }
+        
         return cell
     }
 
@@ -114,7 +143,8 @@ class MasterViewController: UITableViewController {
         // Return false if you do not want the specified item to be editable.
         return false
     }
-
+    
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             gists.remove(at: indexPath.row)
