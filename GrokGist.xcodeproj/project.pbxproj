@@ -18,6 +18,8 @@
 		7C26BCBC2034C48B00B087B9 /* GithubAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C26BCBB2034C48B00B087B9 /* GithubAPIManager.swift */; };
 		7C26BCBE2034C4F600B087B9 /* GistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C26BCBD2034C4F600B087B9 /* GistRouter.swift */; };
 		7C26BCC02034C86D00B087B9 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C26BCBF2034C86D00B087B9 /* Gist.swift */; };
+		7CCE62B62045FD19009AB8A9 /* PINCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCE62B52045FD19009AB8A9 /* PINCache.framework */; };
+		7CCE62B82045FD54009AB8A9 /* PINRemoteImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCE62B72045FD54009AB8A9 /* PINRemoteImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		7C26BCBB2034C48B00B087B9 /* GithubAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPIManager.swift; sourceTree = "<group>"; };
 		7C26BCBD2034C4F600B087B9 /* GistRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistRouter.swift; sourceTree = "<group>"; };
 		7C26BCBF2034C86D00B087B9 /* Gist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
+		7CCE62B52045FD19009AB8A9 /* PINCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PINCache.framework; path = Carthage/Build/iOS/PINCache.framework; sourceTree = "<group>"; };
+		7CCE62B72045FD54009AB8A9 /* PINRemoteImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PINRemoteImage.framework; path = Carthage/Build/iOS/PINRemoteImage.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C26BCBA2034C3ED00B087B9 /* Alamofire.framework in Frameworks */,
+				7CCE62B62045FD19009AB8A9 /* PINCache.framework in Frameworks */,
+				7CCE62B82045FD54009AB8A9 /* PINRemoteImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +121,8 @@
 		7C26BCB82034C3ED00B087B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CCE62B72045FD54009AB8A9 /* PINRemoteImage.framework */,
+				7CCE62B52045FD19009AB8A9 /* PINCache.framework */,
 				7C26BCB92034C3ED00B087B9 /* Alamofire.framework */,
 			);
 			name = Frameworks;
@@ -227,6 +235,8 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PINCache.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PINRemoteImage.framework",
 			);
 			outputPaths = (
 			);
